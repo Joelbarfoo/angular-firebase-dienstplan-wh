@@ -20,17 +20,17 @@ export class Home {
 
   services = signal<Service[]>([
     { name: 'Frühstücksdienst', days: ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 2, time: '07:15 - 07:30' },
-    { name: 'Aufräumdienst unten', days: ['Samstag', 'Sonntag'], peopleNeeded: 1, time: '18:00 - 19:00' },
-    { name: 'Aufräumdienst oben', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 1, time: '18:00 - 19:00' },
-    { name: 'Spüldienst', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 2, time: '19:00 - 20:00' },
-    { name: 'Abendbrotdienst', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 2, time: '17:00 - 18:00' },
-    { name: 'Abendbrot-Aufräumdienst', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 2, time: '18:00 - 19:00' },
-    { name: 'Kaffeerunde', days: ['Freitag'], peopleNeeded: 2, time: '15:00 - 16:00' },
-    { name: 'Dienstplandienst', days: ['Freitag'], peopleNeeded: 2, time: '10:00 - 11:00' },
-    { name: 'Waschküche und TT-Raum', days: ['Montag', 'Donnerstag'], peopleNeeded: 2, time: '09:00 - 10:00' },
-    { name: 'Einkaufen', days: ['Montag', 'Freitag'], peopleNeeded: 3, time: '14:00 - 15:00' },
-    { name: 'Kochdienst', days: ['Samstag', 'Sonntag'], peopleNeeded: 2, time: '12:00 - 13:00' },
-    { name: 'Raucherdienst (ganze Woche)', days: ['Samstag'], peopleNeeded: 1, time: '20:00 - 21:00' }
+    { name: 'Aufräumdienst unten', days: ['Samstag', 'Sonntag'], peopleNeeded: 1, time: 'Ab 8:00' },
+    { name: 'Aufräumdienst oben', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 1, time: '8:00 - 8:30' },
+    { name: 'Spüldienst', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 2, time: '13:00 - 13:30' },
+    { name: 'Abendbrotdienst', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 2, time: 'Ab 17:00' },
+    { name: 'Abendbrot-Aufräumdienst', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 2, time: 'Ab 18:15' },
+    { name: 'Kaffeerunde', days: ['Freitag'], peopleNeeded: 2, time: '14:15 - 14:30' },
+    { name: 'Dienstplandienst', days: ['Freitag'], peopleNeeded: 2, time: '14:30 - 15:00' },
+    { name: 'Waschküche und TT-Raum', days: ['Montag', 'Donnerstag'], peopleNeeded: 2, time: 'Bis 19:30' },
+    { name: 'Einkaufen', days: ['Montag', 'Freitag'], peopleNeeded: 3, time: 'Ab 9:30' },
+    { name: 'Kochdienst', days: ['Samstag', 'Sonntag'], peopleNeeded: 2, time: 'Ab ca. 12:00' },
+    { name: 'Raucherdienst', days: ['Samstag'], peopleNeeded: 1, time: 'ganze Woche' }
   ]);
 
   nextSaturday = signal(this.getNextSaturday());
