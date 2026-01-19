@@ -1,36 +1,33 @@
-<div class="container mx-auto p-4">
-  <h1 class="text-2xl font-bold mb-4">Dienstplan</h1>
+<div class="container mx-auto max-w-4xl p-4 m-64 mt-32">
+  <h1 class="text-2xl font-bold mb-4 text-center">Dienstplan</h1>
   <div class="overflow-x-auto">
     <table class="min-w-full table-auto border-collapse border border-gray-300">
       <thead>
         <tr class="bg-gray-100">
-          <th class="border border-gray-300 px-4 py-2 text-left">Dienste</th>
+          <th class="{{ commonClass }}">Dienste</th>
           @for (date of dates(); track date) {
-            <th class="border border-gray-300 px-4 py-2 text-center">{{ getWeekdayShort(date) }} {{ date | date:'dd.MM.' }}</th>
+            <th class="{{ commonClass }}">{{ getWeekdayShort(date) }} {{ date | date:'dd.MM.' }}</th>
           }
         </tr>
       </thead>
       <tbody>
         @for (service of services(); track service.name; let i = $index) {
-          @if (service.name === 'Raucherdienst') {
-            <tr class="hover:bg-gray-50">
-              <td class="border border-gray-300 px-4 py-2 font-medium">{{ service.name }} ({{ peopleCounts()[i] }} Personen)</td>
-              <td colspan="7" class="border border-gray-300 px-4 py-2 text-center">
+          <tr class="hover:bg-gray-50">
+            <td class="{{ commonClass }} font-medium">{{ service.name }}<br>{{ getPeopleIcons(service.peopleNeeded) }}</td>
+            @if (service.name === 'Raucherdienst') {
+              <td colspan="7" class="{{ commonClass }}">
                 <input type="number" max="999" [(ngModel)]="assignments()[i][0]" class="w-full text-center border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
               </td>
-            </tr>
-          } @else {
-            <tr class="hover:bg-gray-50">
-              <td class="border border-gray-300 px-4 py-2 font-medium">{{ service.name }} ({{ peopleCounts()[i] }} Personen)</td>
+            } @else {
               @for (date of dates(); track date; let j = $index) {
-                <td class="border border-gray-300 px-4 py-2 text-center">
+                <td class="{{ commonClass }}">
                   @if (isApplicable(service, date)) {
                     <input type="number" max="999" [(ngModel)]="assignments()[i][j]" class="w-full text-center border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
                   }
                 </td>
               }
-            </tr>
-          }
+            }
+          </tr>
         }
       </tbody>
     </table>

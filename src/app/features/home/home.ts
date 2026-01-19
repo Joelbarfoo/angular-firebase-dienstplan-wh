@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 interface Service {
   name: string;
   days: string[];
+  peopleNeeded: number;
 }
 
 @Component({
@@ -15,19 +16,21 @@ interface Service {
 export class Home {
   daysGerman = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
 
+  commonClass = 'border border-gray-300 px-4 py-2 text-center';
+
   services = signal<Service[]>([
-    { name: 'Frühstücksdienst', days: ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'] },
-    { name: 'Aufräumdienst unten', days: ['Samstag', 'Sonntag'] },
-    { name: 'Aufräumdienst oben', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'] },
-    { name: 'Spüldienst', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'] },
-    { name: 'Abendbrotdienst', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'] },
-    { name: 'Abendbrot-Aufräumdienst', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'] },
-    { name: 'Kaffeerunde', days: ['Freitag'] },
-    { name: 'Dienstplandienst', days: ['Freitag'] },
-    { name: 'Waschküche', days: ['Montag', 'Donnerstag'] },
-    { name: 'Einkaufen', days: ['Montag', 'Freitag'] },
-    { name: 'Kochdienst', days: ['Samstag', 'Sonntag'] },
-    { name: 'Raucherdienst', days: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'] }
+    { name: 'Frühstücksdienst', days: ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 2 },
+    { name: 'Aufräumdienst unten', days: ['Samstag', 'Sonntag'], peopleNeeded: 1 },
+    { name: 'Aufräumdienst oben', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 1 },
+    { name: 'Spüldienst', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 2 },
+    { name: 'Abendbrotdienst', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 2 },
+    { name: 'Abendbrot-Aufräumdienst', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 2 },
+    { name: 'Kaffeerunde', days: ['Freitag'], peopleNeeded: 2 },
+    { name: 'Dienstplandienst', days: ['Freitag'], peopleNeeded: 2 },
+    { name: 'Waschküche und TT-Raum', days: ['Montag', 'Donnerstag'], peopleNeeded: 2 },
+    { name: 'Einkaufen', days: ['Montag', 'Freitag'], peopleNeeded: 3 },
+    { name: 'Kochdienst', days: ['Samstag', 'Sonntag'], peopleNeeded: 2 },
+    { name: 'Raucherdienst', days: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'], peopleNeeded: 1 }
   ]);
 
   nextSaturday = signal(this.getNextSaturday());
@@ -39,16 +42,6 @@ export class Home {
   }));
 
   assignments = signal<number[][]>(Array.from({length: this.services().length}, () => Array(7).fill(0)));
-
-  peopleCounts = computed(() => {
-    return this.services().map((service, i) => {
-      if (service.name === 'Raucherdienst') {
-        return this.assignments()[i][0] > 0 ? 1 : 0;
-      } else {
-        return this.assignments()[i].filter(a => a > 0).length;
-      }
-    });
-  });
 
   getNextSaturday(): Date {
     const today = new Date();
@@ -70,5 +63,9 @@ export class Home {
     const dayIndex = date.getDay();
     const shortDays = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
     return shortDays[dayIndex];
+  }
+
+  getPeopleIcons(peopleNeeded: number): string {
+    return '👤'.repeat(peopleNeeded);
   }
 }
