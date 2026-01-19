@@ -1,1 +1,38 @@
-<p>home works!</p>
+<div class="container mx-auto p-4">
+  <h1 class="text-2xl font-bold mb-4">Dienstplan</h1>
+  <div class="overflow-x-auto">
+    <table class="min-w-full table-auto border-collapse border border-gray-300">
+      <thead>
+        <tr class="bg-gray-100">
+          <th class="border border-gray-300 px-4 py-2 text-left">Dienste</th>
+          @for (date of dates(); track date) {
+            <th class="border border-gray-300 px-4 py-2 text-center">{{ getWeekdayShort(date) }} {{ date | date:'dd.MM.' }}</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (service of services(); track service.name; let i = $index) {
+          @if (service.name === 'Raucherdienst') {
+            <tr class="hover:bg-gray-50">
+              <td class="border border-gray-300 px-4 py-2 font-medium">{{ service.name }} ({{ peopleCounts()[i] }} Personen)</td>
+              <td colspan="7" class="border border-gray-300 px-4 py-2 text-center">
+                <input type="number" max="999" [(ngModel)]="assignments()[i][0]" class="w-full text-center border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              </td>
+            </tr>
+          } @else {
+            <tr class="hover:bg-gray-50">
+              <td class="border border-gray-300 px-4 py-2 font-medium">{{ service.name }} ({{ peopleCounts()[i] }} Personen)</td>
+              @for (date of dates(); track date; let j = $index) {
+                <td class="border border-gray-300 px-4 py-2 text-center">
+                  @if (isApplicable(service, date)) {
+                    <input type="number" max="999" [(ngModel)]="assignments()[i][j]" class="w-full text-center border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                  }
+                </td>
+              }
+            </tr>
+          }
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
