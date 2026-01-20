@@ -54,17 +54,17 @@
   <!-- Mobile Menu Overlay -->
   @if (open) {
     <!-- Backdrop (click to close) -->
-    <div class="md:hidden fixed inset-0 bg-black/30 z-50" (click)="toggle()"></div>
+    <div class="md:hidden fixed inset-0z-50" (click)="toggle()"></div>
 
     <!-- Menu panel -->
-    <div class="md:hidden absolute top-16 left-0 w-full bg-blue-700 border-t border-blue-500 z-50]">
+    <div class="md:hidden absolute top-16 left-0 w-full bg-blue-700 border-t border-blue-500 z-50 text-white ">
       <div class="px-4 py-3 space-y-2">
         <div class="py-2 border-b border-blue-500 font-semibold text-center">Welcome, User</div>
 
-        <a  routerLink="/login" href="#" class="block py-2 rounded hover:bg-white/10 transition">Login</a>
-        <a href="#" class="block py-2 rounded hover:bg-white/10 transition">Register</a>
-        <a href="#" class="block py-2 rounded hover:bg-white/10 transition">Settings</a>
-        <a href="#" class="block py-2 rounded hover:bg-white/10 transition">Logout</a>
+        <a routerLink="/login" href="#" class="block py-2 rounded hover:bg-white/10 transition">Login</a>
+        <a routerLink="/register" class="block py-2 rounded hover:bg-white/10 transition">Register</a>
+        <a routerLink="/settings" class="block py-2 rounded hover:bg-white/10 transition">Settings</a>
+        <a routerLink="logout" class="block py-2 rounded hover:bg-white/10 transition">Logout</a>
       </div>
     </div>
   }
