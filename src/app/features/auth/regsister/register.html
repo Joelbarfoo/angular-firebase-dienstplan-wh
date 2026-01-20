@@ -1,65 +1,112 @@
-<div class="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-4">
-  <img src="logo.png" alt="Logo" class="mx-auto w-64 md:w-80" />
+<div class="min-h-screen bg-gray-50 px-4 flex items-center justify-center">
+  <div class="w-full max-w-md">
+    <img src="logo.png" alt="Logo" class="mx-auto w-56 md:w-64" />
 
-  <div class="w-full max-w-md bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-    <h1 class="text-2xl font-bold text-center">Create Account</h1>
-    <form class="mt-6 space-y-4">
-      <!-- Name -->
-      <div>
-        <label class="block text-sm font-semibold mb-1">Name</label>
-        <input type="text" placeholder="John Doe" class="w-full rounded-lg border border-gray-200 px-3 py-2
-                 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+      <h1 class="text-2xl font-bold text-center">Create Account</h1>
+      <form class="mt-6 space-y-4">
+        <!-- Name -->
+        <div class="space-y-1">
+          <label class="block text-sm font-semibold">Name</label>
+          <input
+            type="text"
+            placeholder="John Doe"
+            class="w-full rounded-lg border border-gray-200 px-3 py-2 outline-none
+                   focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
+
+        <!-- Email -->
+        <div class="space-y-1">
+          <label class="block text-sm font-semibold">Email</label>
+          <input
+            type="email"
+            placeholder="you@example.com"
+            class="w-full rounded-lg border border-gray-200 px-3 py-2 outline-none
+                   focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
+
+        <!-- Password -->
+        <div class="space-y-1">
+          <label class="block text-sm font-semibold">Password</label>
+          <input
+            type="password"
+            placeholder="••••••••"
+            class="w-full rounded-lg border border-gray-200 px-3 py-2 outline-none
+                   focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="space-y-1">
+          <label class="block text-sm font-semibold">Confirm Password</label>
+          <input
+            type="password"
+            placeholder="••••••••"
+            class="w-full rounded-lg border border-gray-200 px-3 py-2 outline-none
+                   focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
+
+        <!-- Register -->
+        <button
+          type="submit"
+          class="w-full rounded-lg bg-blue-600 text-white font-semibold py-2
+                 hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        >
+          Register
+        </button>
+
+        <!-- Divider -->
+        <div class="flex items-center gap-3 pt-1">
+          <div class="flex-grow h-px bg-gray-200"></div>
+          <span class="text-xs text-gray-400">OR</span>
+          <div class="flex-grow h-px bg-gray-200"></div>
+        </div>
+
+        <!-- Social Buttons -->
+        <div class="flex justify-center gap-4 pt-2">
+  <!-- Google -->
+  <button
+    type="button"
+    class="w-12 h-12 flex items-center justify-center rounded-full border border-gray-200 bg-white
+           hover:bg-gray-50 transition
+           focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
+  >
+    <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-6 h-6" />
+  </button>
+
+  <!-- Facebook -->
+  <button
+    type="button"
+    class="w-12 h-12 flex items-center justify-center rounded-full bg-[#1877F2]
+           hover:bg-[#166FE5] transition
+           focus:outline-none focus:ring-2 focus:ring-[#1877F2]/40 focus:ring-offset-2"
+  >
+    <img src="https://www.svgrepo.com/show/475647/facebook-color.svg"
+         class="w-6 h-6 bg-white rounded-sm p-[2px]" />
+  </button>
+
+  <!-- Apple -->
+  <button
+    type="button"
+    class="w-12 h-12 flex items-center justify-center rounded-full bg-black
+           hover:bg-gray-900 transition
+           focus:outline-none focus:ring-2 focus:ring-gray-900/40 focus:ring-offset-2"
+  >
+    <img src="https://www.svgrepo.com/show/511330/apple-173.svg"
+         class="w-6 h-6 invert" />
+  </button>
+</div>
+
+      </form>
+
+      <!-- Footer -->
+      <div class="mt-5 text-sm text-center text-gray-500">
+        Already have an account?
+        <a routerLink="/login" class="hover:underline font-semibold text-gray-900">Login</a>
       </div>
-
-      <!-- Email -->
-      <div>
-        <label class="block text-sm font-semibold mb-1">Email</label>
-        <input type="email" placeholder="you@example.com" class="w-full rounded-lg border border-gray-200 px-3 py-2
-                 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-      </div>
-
-      <!-- Password -->
-      <div>
-        <label class="block text-sm font-semibold mb-1">Password</label>
-        <input type="password" placeholder="••••••••" class="w-full rounded-lg border border-gray-200 px-3 py-2
-                 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-      </div>
-
-      <!-- Confirm Password -->
-      <div>
-        <label class="block text-sm font-semibold mb-1">Confirm Password</label>
-        <input type="password" placeholder="••••••••" class="w-full rounded-lg border border-gray-200 px-3 py-2
-                 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-      </div>
-
-      <!-- Button -->
-      <button type="submit"
-        class="w-full rounded-lg bg-blue-600 text-white font-semibold py-2 hover:bg-blue-700 transition">
-        Register
-      </button>
-
-      <!-- Divider -->
-      <div class="flex items-center gap-2 my-4">
-        <div class="flex-grow h-px bg-gray-200"></div>
-        <span class="text-xs text-gray-400">OR</span>
-        <div class="flex-grow h-px bg-gray-200"></div>
-      </div>
-
-      <!-- Google Login -->
-      <button type="button"
-        class="w-full flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white py-2 font-semibold text-gray-700 hover:bg-gray-50 transition">
-        <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5" />
-        Continue with Google
-      </button>
-
-    </form>
-
-    <!-- Footer -->
-    <div class="mt-4 text-sm text-center text-gray-500">
-      Already have an account?
-      <a routerLink="/login" class="hover:underline font-semibold">Login</a>
     </div>
   </div>
-
-
 </div>
