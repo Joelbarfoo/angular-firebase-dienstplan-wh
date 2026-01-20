@@ -1,24 +1,56 @@
-<nav class="bg-blue-600 text-white shadow-lg sticky top-0 z-50 relative">
+<nav class="bg-blue-600 text-white shadow-lg sticky top-0 z-50">
   <div class="container mx-auto px-4 py-3 flex items-center justify-between relative">
-    
-    <!-- Left: Logo / Title (only on md+) -->
-    <div class="text-xl font-bold hidden md:block">
-      Dienstplan
+    <!-- Left: Hamburger (mobile) + Title (md+) -->
+    <div class="flex items-center gap-3">
+      <button
+        type="button"
+        (click)="toggle()"
+        class="md:hidden relative z-20 focus:outline-none"
+        aria-label="Open menu"
+        [attr.aria-expanded]="open"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          @if (!open) {
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"></path>
+          } @else {
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"></path>
+          }
+        </svg>
+      </button>
+
+      <div class="text-xl font-bold hidden md:block">
+        Dienstplan
+      </div>
     </div>
 
-    <!-- Center: Points (only on small screens) -->
-    <div class="absolute left-1/2 transform -translate-x-1/2 md:static md:transform-none">
+    <!-- Center: Points -->
+    <div class="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 pointer-events-none md:pointer-events-auto">
       <span class="font-bold text-center block md:hidden">Points: 100</span>
-      <!-- On md+ you can also show it somewhere else if needed -->
-      <span class="hidden md:inline font-bold">Points: 100</span>
+      <span class="hidden md:inline font-bold text-2xl">Points: 100</span>
     </div>
 
-    <!-- Right: User / Buttons (only on md+) -->
-    <div class="flex items-center space-x-4 hidden md:flex">
+    <!-- Right: Desktop -->
+    <div class="hidden md:flex items-center space-x-4">
       <span>Welcome, User</span>
-      <button class="bg-white text-blue-600 px-3 py-1 rounded hover:bg-gray-100 transition duration-300">Login</button>
-      <button class="bg-white text-blue-600 px-3 py-1 rounded hover:bg-gray-200 transition duration-300">Register</button>
-    </div>
+      <button class="bg-white text-blue-600 px-3 py-1 rounded hover:bg-gray-100 transition">Login</button>
+      <button class="bg-white text-blue-600 px-3 py-1 rounded hover:bg-gray-200 transition">Register</button>
+            <button class="bg-white text-blue-600 px-3 py-1 rounded hover:bg-gray-200 transition">Settings</button>
 
+    </div>
   </div>
+
+  <!-- Mobile Menu -->
+  @if (open) {
+    <div class="md:hidden bg-blue-700 border-t border-blue-500">
+      <div class="px-4 pt-2 pb-4 space-y-2">
+        <div class="py-2 border-b border-blue-500 font-semibold">Welcome, User</div>
+        <a href="#" class="block py-2 hover:text-blue-200 transition">Login</a>
+        <a href="#" class="block py-2 hover:text-blue-200 transition">Register</a>
+        <a href="#" class="block py-2 hover:text-blue-200 transition">Settings</a>
+        <a href="#" class="block py-2 hover:text-blue-200 transition">Logout</a>
+      </div>
+    </div>
+  }
 </nav>
