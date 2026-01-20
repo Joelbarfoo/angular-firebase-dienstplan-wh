@@ -5,7 +5,7 @@
     <table class="min-w-full table-auto border-collapse border border-gray-300">
       <thead>
         <tr class="bg-gray-100">
-          <th class="border border-gray-300 px-4 py-2 text-center">Dienste</th>
+          <th class="sticky left-0 bg-gray-100 z-20 border border-gray-300 px-4 py-2 text-center">Dienste</th>
           <th class="border border-gray-300 px-4 py-2 text-center">Zeit</th>
           @for (date of dates(); track date) {
             <th class="border border-gray-300 px-4 py-2 text-center">{{ getWeekdayShort(date) }} {{ date | date:'dd.MM.' }}</th>
@@ -15,7 +15,9 @@
       <tbody>
         @for (service of services(); track service.name; let i = $index) {
           <tr class="hover:bg-gray-50">
-            <td class="border border-gray-300 px-4 py-2 font-medium text-center">{{ service.name }}<br>{{ getPeopleIcons(service.peopleNeeded) }}</td>
+            <td class="sticky left-0 bg-white z-10 border border-gray-300 p-1 font-medium text-center">
+              {{ service.name }}<br>{{ getPeopleIcons(service.peopleNeeded) }}
+            </td>
             <td class="border border-gray-300 px-4 py-2 text-center min-w-33">{{ service.time }}</td>
             @for (date of dates(); track date; let j = $index) {
               <td class="border border-gray-300 px-4 py-2 text-center">
