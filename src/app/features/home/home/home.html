@@ -1,77 +1,71 @@
 <app-navbar></app-navbar>
-<div class="mx-auto w-full max-w-full p-4 md:max-w-6xl md:py-10 flex flex-col">
+
+<div class="mx-auto w-full max-w-full p-4 md:max-w-6xl md:py-10 flex flex-col h-[calc(100vh-64px)]">
   <img src="logo.png" alt="Logo" class="mx-auto mb-6 w-64 md:w-80" />
 
   <!-- Scroll container -->
-<div class="mb-56 flex-1 overflow-auto rounded-xl border border-gray-200 shadow-sm bg-white">
+  <div class="flex-1 overflow-auto rounded-xl border border-gray-200 shadow-sm bg-white relative">
     <table class="min-w-max w-full border-collapse text-sm">
       <!-- Sticky header -->
-      <thead class="sticky top-0 z-30 bg-gray-100">
+      <thead class="sticky top-0 z-40 bg-gray-100">
         <tr class="text-gray-700">
           <!-- Sticky corner -->
-          <th
-            class="sticky top-0 left-0 z-40 bg-gray-100 border-b border-r border-gray-200 px-3 py-3 text-center font-semibold whitespace-nowrap"
-          >
+          <th class="sticky top-0 left-0 z-40 bg-gray-100 border-b border-r border-gray-200
+         px-2 py-3 text-center font-semibold whitespace-normal
+         w-[96px] md:w-[120px] max-w-[120px]">
             Dienste
           </th>
-
-          <th class="sticky top-0 z-30 bg-gray-100 border-b border-gray-200 px-3 py-3 text-center font-semibold whitespace-nowrap">
+          <th
+            class="sticky top-0 z-40 bg-gray-100 border-b border-gray-200 px-3 py-3 text-center font-semibold whitespace-nowrap">
             Zeit
           </th>
 
           @for (date of dates(); track date) {
-            <th class="sticky top-0 z-30 bg-gray-100 border-b border-gray-200 px-3 py-3 text-center font-semibold whitespace-nowrap">
-              {{ getWeekdayShort(date) }} {{ date | date:'dd.MM.' }}
-            </th>
+          <th
+            class="sticky top-0 z-40 bg-gray-100 border-b border-gray-200 px-3 py-3 text-center font-semibold whitespace-nowrap">
+            {{ getWeekdayShort(date) }} {{ date | date:'dd.MM.' }}
+          </th>
           }
         </tr>
       </thead>
 
       <tbody class="divide-y divide-gray-100">
         @for (service of services(); track service.name; let i = $index) {
-          <tr class="odd:bg-white even:bg-gray-50 hover:bg-gray-100/70">
-            <!-- Sticky first column -->
-            <td
-              class="sticky left-0 z-20 border-r border-gray-200 px-2 py-2 text-center bg-inherit"
-            >
-              <div class="font-semibold leading-tight">{{ service.name }}</div>
-              <div class="text-gray-500 text-xs mt-0.5">{{ getPeopleIcons(service.peopleNeeded) }}</div>
-            </td>
+        <tr class="odd:bg-white even:bg-gray-50 hover:bg-gray-100/70">
+          <!-- Sticky first column -->
+          <td class="sticky left-0 z-40 border-r border-gray-200 px-2 py-2 text-center bg-inherit
+         w-[96px] md:w-[120px] max-w-[120px] break-words">
 
-            <td class="px-3 py-2 text-center whitespace-nowrap text-gray-700">
-              {{ service.time }}
-            </td>
+            <div class="font-semibold leading-tight">{{ service.name }}</div>
+            <div class="text-gray-500 text-xs mt-0.5">
+              {{ getPeopleIcons(service.peopleNeeded) }}
+            </div>
+          </td>
 
-            @for (date of dates(); track date; let j = $index) {
-              <td class="px-2 py-2 text-center min-w-[92px]">
-                @if (isApplicable(service, date)) {
-                  <div class="flex flex-col items-center gap-1">
-                    <input
-                      type="number"
-                      max="999"
-                      [(ngModel)]="assignments()[i][j]"
-                      class="w-full max-w-[84px] rounded-md border border-gray-200 bg-white px-2 py-1 text-center
-                             focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
+          <td class="px-3 py-2 text-center whitespace-nowrap text-gray-700">
+            {{ service.time }}
+          </td>
 
-                    <button
-                      type="button"
-                      (click)="toggleConfirmed(i, j)"
-                      class="inline-flex items-center justify-center rounded-md px-2 py-1 text-xs font-semibold
+          @for (date of dates(); track date; let j = $index) {
+          <td class="px-2 py-2 text-center min-w-[92px]">
+            @if (isApplicable(service, date)) {
+            <div class="flex flex-col items-center gap-1">
+              <input type="number" max="999" [(ngModel)]="assignments()[i][j]" class="w-full max-w-[84px] rounded-md border border-gray-200 bg-white px-2 py-1 text-center
+                             focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
+              <button type="button" (click)="toggleConfirmed(i, j)" class="inline-flex items-center justify-center rounded-md px-2 py-1 text-xs font-semibold
                              border border-gray-200 bg-white hover:bg-gray-50 active:scale-[0.98]"
-                      [class.text-green-700]="!confirmed()[i][j]"
-                      [class.text-red-700]="confirmed()[i][j]"
-                      [attr.aria-label]="confirmed()[i][j] ? 'Unconfirm' : 'Confirm'"
-                    >
-                      @if (confirmed()[i][j]) { ✗ } @else { ✓ }
-                    </button>
-                  </div>
-                } @else {
-                  <span class="text-gray-300">—</span>
-                }
-              </td>
+                [class.text-green-700]="!confirmed()[i][j]" [class.text-red-700]="confirmed()[i][j]"
+                [attr.aria-label]="confirmed()[i][j] ? 'Unconfirm' : 'Confirm'">
+                @if (confirmed()[i][j]) { ✗ } @else { ✓ }
+              </button>
+            </div>
+            } @else {
+            <span class="text-gray-300">—</span>
             }
-          </tr>
+          </td>
+          }
+        </tr>
         }
       </tbody>
     </table>

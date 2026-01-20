@@ -20,14 +20,14 @@ export class Home {
   daysGerman = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
 
   services = signal<Service[]>([
-    { name: 'Frühstücksdienst', days: ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 2, time: '07:15 - 07:30' },
-    { name: 'Aufräumdienst unten', days: ['Samstag', 'Sonntag'], peopleNeeded: 1, time: 'Ab 8:00' },
-    { name: 'Aufräumdienst oben', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 1, time: '8:00 - 8:30' },
-    { name: 'Spüldienst', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 2, time: '13:00 - 13:30' },
-    { name: 'Abendbrotdienst', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 2, time: 'Ab 17:30' },
-    { name: 'Abendbrot-Aufräumdienst', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 2, time: 'Ab 18:15' },
-    { name: 'Kaffeerunde', days: ['Freitag'], peopleNeeded: 2, time: '14:15 - 14:30' },
-    { name: 'Dienstplandienst', days: ['Freitag'], peopleNeeded: 2, time: '14:30 - 15:00' },
+    { name: 'Frühstücks-Dienst', days: ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 2, time: '07:15 - 07:30' },
+    { name: 'Aufräum-Dienst unten', days: ['Samstag', 'Sonntag'], peopleNeeded: 1, time: 'Ab 8:00' },
+    { name: 'Aufräum-Dienst oben', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 1, time: '8:00 - 8:30' },
+    { name: 'Spül-Dienst', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 2, time: '13:00 - 13:30' },
+    { name: 'Abendbrot-Dienst', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 2, time: 'Ab 17:30' },
+    { name: 'Abendbrot-Aufräum-Dienst', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 2, time: 'Ab 18:15' },
+    { name: 'Kaffeerunden-Dienst', days: ['Freitag'], peopleNeeded: 2, time: '14:15 - 14:30' },
+    { name: 'Dienstplan-Dienst', days: ['Freitag'], peopleNeeded: 2, time: '14:30 - 15:00' },
     { name: 'Waschküche und TT-Raum', days: ['Montag', 'Donnerstag'], peopleNeeded: 2, time: 'Bis 19:30' },
     { name: 'Einkaufen', days: ['Montag', 'Freitag'], peopleNeeded: 3, time: 'Ab 9:30' },
     { name: 'Kochdienst', days: ['Samstag', 'Sonntag'], peopleNeeded: 2, time: 'Ab ca. 12:00' },
