@@ -1,7 +1,7 @@
-<nav class="bg-blue-600 text-white shadow-lg sticky top-0 z-50 h-16 relative">
+<nav class="bg-blue-600 text-white shadow-lg sticky top-0 z-50 h-16">
   <div class="mx-auto max-w-6xl px-4 h-16 flex items-center justify-between relative">
     <!-- Left -->
-    <div class="flex items-center gap-3 min-w-[48px]">
+    <div class="flex items-center gap-3 min-w-12">
       <button
         type="button"
         (click)="toggle()"
@@ -21,7 +21,7 @@
       </button>
 
       <!-- Desktop logo -->
-      <img src="/6.png" alt="Logo" class="hidden md:block h-10 h-44  w-auto object-contain" />
+      <img src="/6.png" alt="Logo" class="hidden md:block h-44  w-auto object-contain" />
     </div>
 
     <!-- Center: Mobile logo + points (always perfectly centered on mobile) -->
@@ -31,7 +31,7 @@
              flex items-center gap-2"
     >
       <!-- Mobile logo -->
-      <img src="/6.png" alt="Logo" class="h-44 w-auto md:hidden  w-auto object-contain" />
+      <img src="/6.png" alt="Logo" class="h-44 w-auto md:hidden object-contain" />
       <span class="font-bold text-sm md:text-2xl text-center">Points: 100</span>
     </div>
 
@@ -57,7 +57,7 @@
     <div class="md:hidden fixed inset-0 bg-black/30 z-50" (click)="toggle()"></div>
 
     <!-- Menu panel -->
-    <div class="md:hidden absolute top-16 left-0 w-full bg-blue-700 border-t border-blue-500 z-[80]">
+    <div class="md:hidden absolute top-16 left-0 w-full bg-blue-700 border-t border-blue-500 z-50]">
       <div class="px-4 py-3 space-y-2">
         <div class="py-2 border-b border-blue-500 font-semibold text-center">Welcome, User</div>
 
