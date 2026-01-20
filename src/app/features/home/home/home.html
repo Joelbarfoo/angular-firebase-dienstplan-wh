@@ -1,40 +1,77 @@
-<!-- <app-navbar></app-navbar>/ -->
-<div class="container mx-auto max-w-full p-4 md:max-w-4xl md:my-32">
-  <img src="logo.png" alt="Logo" class="mx-auto mb-6 w-80" />
-  <div class="overflow-x-auto">
-    <table class="sticky top-0 z-10 min-w-full table-auto border-collapse border border-gray-300 ">
-      <thead class="sticky top-0">
-        <tr class="bg-gray-100">
-          <th class="sticky left-0 bg-gray-100 z-20 border border-gray-300 px-4 py-2 text-center">Dienste</th>
-          <th class="border border-gray-300 px-4 py-2 text-center">Zeit</th>
+<app-navbar></app-navbar>
+<div class="mx-auto w-full max-w-full p-4 md:max-w-6xl md:py-10 flex flex-col">
+  <img src="logo.png" alt="Logo" class="mx-auto mb-6 w-64 md:w-80" />
+
+  <!-- Scroll container -->
+<div class="mb-56 flex-1 overflow-auto rounded-xl border border-gray-200 shadow-sm bg-white">
+    <table class="min-w-max w-full border-collapse text-sm">
+      <!-- Sticky header -->
+      <thead class="sticky top-0 z-30 bg-gray-100">
+        <tr class="text-gray-700">
+          <!-- Sticky corner -->
+          <th
+            class="sticky top-0 left-0 z-40 bg-gray-100 border-b border-r border-gray-200 px-3 py-3 text-center font-semibold whitespace-nowrap"
+          >
+            Dienste
+          </th>
+
+          <th class="sticky top-0 z-30 bg-gray-100 border-b border-gray-200 px-3 py-3 text-center font-semibold whitespace-nowrap">
+            Zeit
+          </th>
+
           @for (date of dates(); track date) {
-          <th class="border border-gray-300 px-4 py-2 text-center">{{ getWeekdayShort(date) }} {{ date | date:'dd.MM.'
-            }}</th>
+            <th class="sticky top-0 z-30 bg-gray-100 border-b border-gray-200 px-3 py-3 text-center font-semibold whitespace-nowrap">
+              {{ getWeekdayShort(date) }} {{ date | date:'dd.MM.' }}
+            </th>
           }
         </tr>
       </thead>
-      <tbody>
+
+      <tbody class="divide-y divide-gray-100">
         @for (service of services(); track service.name; let i = $index) {
-        <tr class="hover:bg-gray-200">
-          <td class="sticky left-0 bg-white z-10 border border-gray-300 p-1 font-medium text-center">
-            {{ service.name }}<br>{{ getPeopleIcons(service.peopleNeeded) }}
-          </td>
-          <td class="border border-gray-300 px-4 py-2 text-center min-w-33">{{ service.time }}</td>
-          @for (date of dates(); track date; let j = $index) {
-          <td class="border border-gray-300 px-4 py-2 text-center">
-            @if (isApplicable(service, date)) {
-            <input type="number" max="999" [(ngModel)]="assignments()[i][j]"
-              class="w-full text-center border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-            <br>
-            @if (confirmed()[i][j]) {
-            <button (click)="toggleConfirmed(i, j)" class="mt-1 text-red-500 text-xl">✗</button>
-            } @else {
-            <button (click)="toggleConfirmed(i, j)" class="mt-1 text-green-500 text-xl">✓</button>
+          <tr class="odd:bg-white even:bg-gray-50 hover:bg-gray-100/70">
+            <!-- Sticky first column -->
+            <td
+              class="sticky left-0 z-20 border-r border-gray-200 px-2 py-2 text-center bg-inherit"
+            >
+              <div class="font-semibold leading-tight">{{ service.name }}</div>
+              <div class="text-gray-500 text-xs mt-0.5">{{ getPeopleIcons(service.peopleNeeded) }}</div>
+            </td>
+
+            <td class="px-3 py-2 text-center whitespace-nowrap text-gray-700">
+              {{ service.time }}
+            </td>
+
+            @for (date of dates(); track date; let j = $index) {
+              <td class="px-2 py-2 text-center min-w-[92px]">
+                @if (isApplicable(service, date)) {
+                  <div class="flex flex-col items-center gap-1">
+                    <input
+                      type="number"
+                      max="999"
+                      [(ngModel)]="assignments()[i][j]"
+                      class="w-full max-w-[84px] rounded-md border border-gray-200 bg-white px-2 py-1 text-center
+                             focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+
+                    <button
+                      type="button"
+                      (click)="toggleConfirmed(i, j)"
+                      class="inline-flex items-center justify-center rounded-md px-2 py-1 text-xs font-semibold
+                             border border-gray-200 bg-white hover:bg-gray-50 active:scale-[0.98]"
+                      [class.text-green-700]="!confirmed()[i][j]"
+                      [class.text-red-700]="confirmed()[i][j]"
+                      [attr.aria-label]="confirmed()[i][j] ? 'Unconfirm' : 'Confirm'"
+                    >
+                      @if (confirmed()[i][j]) { ✗ } @else { ✓ }
+                    </button>
+                  </div>
+                } @else {
+                  <span class="text-gray-300">—</span>
+                }
+              </td>
             }
-            }
-          </td>
-          }
-        </tr>
+          </tr>
         }
       </tbody>
     </table>

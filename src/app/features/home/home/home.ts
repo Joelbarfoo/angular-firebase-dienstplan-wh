@@ -1,6 +1,7 @@
 import { Component, signal, computed } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Navbar } from '../navbar/navbar';
 
 
 interface Service {
@@ -12,7 +13,7 @@ interface Service {
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, DatePipe, FormsModule],
+  imports: [CommonModule, DatePipe, FormsModule, Navbar],
   templateUrl: './home.html',
 })
 export class Home {
