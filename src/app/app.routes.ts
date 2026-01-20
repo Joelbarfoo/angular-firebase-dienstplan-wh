@@ -9,7 +9,7 @@ export const routes: Routes = [
   {
     path: 'register',
     loadComponent: () =>
-      import('./features/auth/regsister/regsister').then(m => m.Regsister),
+      import('./features/auth/regsister/register').then(m => m.Register),
   },
   {
     path: '',

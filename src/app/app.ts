@@ -2,12 +2,12 @@ import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Home } from "./features/home/home/home";
 import { Login } from './features/auth/login/login';
-import { Regsister } from './features/auth/regsister/regsister';
+import { Register } from './features/auth/regsister/register';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Home, Login, Regsister],
+  imports: [RouterOutlet, Home, Login, Register],
   templateUrl: './app.html',
 })
 export class App {
