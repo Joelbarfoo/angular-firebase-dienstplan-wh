@@ -6,21 +6,21 @@
   <div class="flex-1 overflow-auto rounded-xl border border-gray-200  bg-white relative">
     <table class="min-w-max w-full border-collapse text-sm">
       <!-- Sticky header -->
-      <thead class="sticky top-0 z-50 bg-gray-100">
+      <thead class="sticky top-0 z-40 bg-gray-100">
         <tr class="text-gray-700">
           <!-- Sticky corner -->
-          <th class="sticky top-0 left-0 z-50 bg-gray-100 border-b border-r border-gray-200
+          <th class="sticky top-0 left-0 z-40 bg-gray-100 border-b border-r border-gray-200
          px-2 py-3 text-center font-semibold whitespace-normal">
             Dienste
           </th>
           <th
-            class="sticky top-0 z-40 bg-gray-100 border-b border-gray-200 px-3 py-3 text-center font-semibold whitespace-nowrap">
+            class="sticky top-0 z-30 bg-gray-100 border-b border-gray-200 px-3 py-3 text-center font-semibold whitespace-nowrap">
             Zeit
           </th>
 
           @for (date of dates(); track date) {
           <th
-            class="sticky top-0 z-40 bg-gray-100 border-b border-gray-200 px-3 py-3 text-center font-semibold whitespace-nowrap">
+            class="sticky top-0 z-30 bg-gray-100 border-b border-gray-200 px-3 py-3 text-center font-semibold whitespace-nowrap">
             {{ getWeekdayShort(date) }} {{ date | date:'dd.MM.' }}
           </th>
           }
@@ -31,7 +31,7 @@
         @for (service of services(); track service.name; let i = $index) {
         <tr class="odd:bg-white even:bg-gray-50 hover:bg-gray-100/70">
           <!-- Sticky first column -->
-          <td class="sticky left-0 z-40 border-r border-gray-200 px-2 py-2 text-center bg-inherit
+          <td class="sticky left-0 z-30 border-r border-gray-200 px-2 py-2 text-center bg-inherit
          w-[96px] md:w-[120px] max-w-[120px] break-words">
 
             <div class="font-semibold leading-tight">{{ service.name }}</div>
