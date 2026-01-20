@@ -23,7 +23,7 @@ export class Home {
     { name: 'Aufräumdienst unten', days: ['Samstag', 'Sonntag'], peopleNeeded: 1, time: 'Ab 8:00' },
     { name: 'Aufräumdienst oben', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 1, time: '8:00 - 8:30' },
     { name: 'Spüldienst', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 2, time: '13:00 - 13:30' },
-    { name: 'Abendbrotdienst', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 2, time: 'Ab 17:00' },
+    { name: 'Abendbrotdienst', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 2, time: 'Ab 17:30' },
     { name: 'Abendbrot-Aufräumdienst', days: ['Samstag', 'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'], peopleNeeded: 2, time: 'Ab 18:15' },
     { name: 'Kaffeerunde', days: ['Freitag'], peopleNeeded: 2, time: '14:15 - 14:30' },
     { name: 'Dienstplandienst', days: ['Freitag'], peopleNeeded: 2, time: '14:30 - 15:00' },
