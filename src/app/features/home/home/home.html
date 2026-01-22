@@ -4,105 +4,77 @@
   <div class="flex-1 overflow-auto rounded-xl border border-gray-200 bg-white relative">
 
     <!-- GRID WRAPPER -->
-    <div
-      class="grid text-sm w-max
-             [grid-template-columns:12rem_8rem_repeat(var(--days),minmax(5.5rem,1fr))]"
-      [style.--days]="dates().length"
-    >
+    <div class="grid text-sm w-max
+             grid-cols-[12rem_8rem_repeat(var(--days),minmax(5.5rem,1fr))]" [style.--days]="dates().length">
       <!-- HEADER ROW -->
-      <div
-        class="px-2 py-3 text-center font-semibold whitespace-normal
+      <div class="px-2 py-3 text-center font-semibold whitespace-normal
                bg-gray-100 border-b border-r border-gray-200
-               sticky top-0 left-0 z-[80]"
-      >
+               sticky top-0 left-0 z-80">
         Dienste
       </div>
 
-      <div
-        class="px-3 py-3 text-center font-semibold whitespace-nowrap
+      <div class="px-3 py-3 text-center font-semibold whitespace-nowrap
                bg-gray-100 border-b border-gray-200
-               sticky top-0 z-[70]"
-      >
+               sticky top-0 z-70">
         Zeit
       </div>
 
       @for (date of dates(); track date; let j = $index) {
-        <div
-          class="px-3 py-3 text-center font-semibold whitespace-nowrap
+      <div class="px-3 py-3 text-center font-semibold whitespace-nowrap
                  bg-gray-100 border-b border-gray-200
-                 sticky top-0 z-[70]"
-        >
-          {{ getWeekdayShort(date) }} {{ date | date:'dd.MM.' }}
-        </div>
+                 sticky top-0 z-70">
+        {{ getWeekdayShort(date) }} {{ date | date:'dd.MM.' }}
+      </div>
       }
 
       <!-- BODY -->
       @for (service of services(); track service.name; let i = $index) {
 
-        <!-- Sticky first col -->
-        <div
-          class="px-2 py-2 text-center border-b border-r border-gray-200
-                 sticky left-0 z-[60] bg-white
-                 w-48 max-w-48 break-words"
-        >
-          <div class="font-semibold leading-tight">{{ service.name }}</div>
-          <div class="text-gray-500 text-xs mt-0.5">
-            {{ getPeopleIcons(service.peopleNeeded) }}
-          </div>
+      <!-- Sticky first col -->
+      <div class="px-2 py-2 text-center border-b border-r border-gray-200
+                 sticky left-0 z-60 bg-white
+                 w-48 max-w-48 wrap-break-word">
+        <div class="font-semibold leading-tight">{{ service.name }}</div>
+        <div class="text-gray-500 text-xs mt-0.5">
+          {{ getPeopleIcons(service.peopleNeeded) }}
         </div>
+      </div>
 
-        <!-- Time col -->
-        <div
-          class="px-3 py-2 text-center whitespace-nowrap text-gray-700
+      <!-- Time col -->
+      <div class="px-3 py-2 text-center whitespace-nowrap text-gray-700
                  border-b border-gray-100
-                 odd:bg-white even:bg-gray-50 hover:bg-gray-300/50"
-        >
-          {{ service.time }}
-        </div>
+                 odd:bg-white even:bg-gray-50 hover:bg-gray-300/50">
+        {{ service.time }}
+      </div>
 
-        <!-- Date cells -->
-        @for (date of dates(); track date; let j = $index) {
-          <div
-            class="px-2 py-2 text-center min-w-23
+      <!-- Date cells -->
+      @for (date of dates(); track date; let j = $index) {
+      <div class="px-2 py-2 text-center min-w-23
                    border-b border-gray-100
-                   odd:bg-white even:bg-gray-50 hover:bg-gray-300/50"
-          >
-            @if (isApplicable(service, date)) {
-              <div class="flex flex-col items-center gap-1">
-                <input
-                  type="number"
-                  max="999"
-                  [(ngModel)]="assignments()[i][j]"
-                  class="w-full max-w-21 rounded-md border border-gray-200 bg-white px-2 py-1 text-center
-                         focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
+                   odd:bg-white even:bg-gray-50 hover:bg-gray-300/50">
+        @if (isApplicable(service, date)) {
+        <div class="flex flex-col items-center gap-1">
+          <input type="number" max="999" [(ngModel)]="assignments()[i][j]" class="w-full max-w-21 rounded-md border border-gray-200 bg-white px-2 py-1 text-center
+                         focus:outline-none focus:ring-2 focus:ring-blue-500" />
 
-                <button
-                  type="button"
-                  (click)="toggleConfirmed(i, j)"
-                  class="inline-flex items-center justify-center rounded-md px-2 py-1 text-xs font-semibold
+          <button type="button" (click)="toggleConfirmed(i, j)" class="inline-flex items-center justify-center rounded-md px-2 py-1 text-xs font-semibold
                          border border-gray-200 bg-white hover:bg-gray-50 active:scale-[0.98]"
-                  [class.text-green-700]="!confirmed()[i][j]"
-                  [class.text-red-700]="confirmed()[i][j]"
-                  [attr.aria-label]="confirmed()[i][j] ? 'Unconfirm' : 'Confirm'"
-                >
-                  @if (confirmed()[i][j]) { ✗ } @else { ✓ }
-                </button>
-              </div>
-            } @else {
-              <span class="text-gray-300">—</span>
-            }
-          </div>
+            [class.text-green-700]="!confirmed()[i][j]" [class.text-red-700]="confirmed()[i][j]"
+            [attr.aria-label]="confirmed()[i][j] ? 'Unconfirm' : 'Confirm'">
+            @if (confirmed()[i][j]) { ✗ } @else { ✓ }
+          </button>
+        </div>
+        } @else {
+        <span class="text-gray-300">—</span>
         }
+      </div>
+      }
       }
     </div>
   </div>
 
-  <button
-    type="submit"
-    class="mt-3 w-full rounded-xl bg-blue-600 px-6 py-4 text-lg font-semibold text-white
-           shadow-md hover:bg-blue-800 hover:shadow-lg transition-all duration-500"
-  >
+  <button type="submit" class="mt-3 w-full rounded-xl bg-blue-600 px-6 py-4 text-lg font-semibold text-white
+           shadow-md hover:bg-blue-800 hover:shadow-lg transition-all duration-500">
     100 Points remaining
   </button>
 </div>
